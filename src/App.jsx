@@ -1,28 +1,16 @@
 import './App.css'
 import { useState, useEffect } from 'react';
 import axios from 'axios'
+import ChildComponent from './ChildComponent'
 
 function App() {
 
-  // let name = "shaheryar"
-  // name = "ALi";
-
-  // let [name,setName] = useState("Shaheryar")
-  // setName("ALi")
-  // const [count,setCount] = useState(5)
-  // const [display, setDisplay] = useState('block');
   const [data,setData] = useState([]);
-  const [error,setError] = useState("")
-  // const persons = [
-  //   { name: 'Ali' , city : 'Karachi'},
-  //   { name: 'Ahmed' , city : 'Lahore'},
-  //   { name: 'Lahore' , city : 'Islamabad'},
-  // ]
-  // function addCount(){
-  //   console.log("click addcount function")
-  //   setCount(count + 1)
-  //   console.log("count: " + count)
-  // }
+  const [error,setError] = useState("");
+  let [count,setCount] = useState(0)
+  let [num1,setNum1] = useState(0);
+  let [num2,setNum2] = useState(0);
+  let [result,setResult] = useState(0);
   useEffect(()=>{
 
     // axios.get('https://official-joke-api.appspot.com/random_joke2').then((response) => { 
@@ -50,46 +38,45 @@ console.log("response",response)
     fetchApiData()
 
   },[])
+ //child to parent data will be passed through a function,
+ // function will be defined in parent and called in child
+  function addCount(){
+    setCount(count++);
+  }
+
+  function handleChange(event){
+    console.log("name",event.target.name)
+    console.log(":- handleChange event",typeof event.target.value)
+    // setResult(a+b)
+    if(event.target.name === 'num1'){
+      setNum1(+event.target.value)
+    }
+
+    if(event.target.name === 'num2'){
+      setNum2(+event.target.value)
+    }
+  }
   return (  
-    // <div>
-    //     <h1>{data.setup}</h1>
-    //   <h1>{name} component</h1>
-    //   <h3>Name of colors</h3>
-    //   <ul>
-    //     {persons.map((value,index) => {
-    //       return (<li key={index}>{value.name} - {value.city}</li>) //   value = { name: 'Ali' , city : 'Karachi'},
-    //     })}
-    //   </ul>
-
-    //   <table>
-    //     <tr>
-    //       <th>Name</th>
-    //       <th>Country</th>
-    //       <th>Code</th>
-    //     </tr>
-    //     {
-    //       data.map((item, index) => (
-    //         <tr key={index}>
-    //           <td>{item.name}</td>
-    //           <td>{item.counter}</td>
-    //           <td>{item.alpha_two_codes}</td>
-    //         </tr>
-    //       ))
-    //   }
-    //   </table>
-
-
-      
-
-    //   <p>Count = {count}</p>
-    //   <button style={{display: display}} onClick={addCount}>
-    //     Add Count
-    //   </button>
-    // </div>
-<>
-
+<div style={{backgroundColor:'lightgray'}}>
+<ChildComponent data={['testdata1','testdata2','testdata3']} increaseCount={addCount}/>
 {error ? (<p>Error: {error}</p>) : (<p>no error found</p>)}
-</>
+
+<h1>Counter</h1>
+<p>Count: {count}</p>
+
+
+<div>
+Num 1 : <input type="number" onChange={handleChange} name='num1'/>
+</div>
+
+<div>
+Num 2 : <input type="number" onChange={handleChange} name='num2'/>
+</div>
+
+<div>
+Result: {num1 + num2}
+</div>
+</div>
   )
 }
 
