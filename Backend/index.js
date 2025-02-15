@@ -1,19 +1,27 @@
 const express = require("express");
-
+const connectMONGODB = require("./config/db")
+const Comment = require("./models/Comment");
 const app = express();
 
 app.use(express.json())
 
 const PORT = 3000;
 
+connectMONGODB()
+
 app.get('/', async (req, res) => {
 
     try {
 
         const { name, city, uni } = req.query;
+        const comments = await Comment.find({
+            name: {
+                $regex: name, $options: 'i'
+            }
+        }).limit(10)
 
         console.log("req.query",req.query)
-        return res.status(200).json({ data: [],message: 'OK!!!!!!!' });
+        return res.status(200).json({ data: comments, message: 'OK!!!!!!!' });
         
     } catch (error) {
         return res.status(500).send("Server error",error.message)
