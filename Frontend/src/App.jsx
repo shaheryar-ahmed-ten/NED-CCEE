@@ -1,17 +1,20 @@
 import './App.css';
 import { TodoWrapper } from './components/TodoWrapper.jsx';
-import Button from "react-bootstrap/Button";
+import { BrowserRouter as Router, Routes, Route,Link } from "react-router-dom";
+import Login from "./components/Login";
+import Signup from "./components/Signup.jsx";
 
 function App() {
   return (
       <div className="App" style={{ backgroundColor: "#8758ff" }}>
-        <Button variant="primary" size="lg" className="custom-button">
-          Sign Up
-      </Button>
-      <Button variant="primary" size="lg" className="custom-button">
-          Login
-        </Button>
-        <TodoWrapper />
+      <Router>
+       
+        <Routes>
+          <Route path="/" exact element={<TodoWrapper />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+        </Routes>
+      </Router>
       </div>
 
   );
