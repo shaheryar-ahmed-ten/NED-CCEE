@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const MONGOURI = 'mongodb+srv://shaheryarahmed:admin123@cluster0.l0tmu.mongodb.net/sample_mflix'
+const MONGOURI = process.env.MONGO_URI
 
 
 const connectMONGODB = async() => {
