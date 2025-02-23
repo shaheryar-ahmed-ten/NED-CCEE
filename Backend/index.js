@@ -4,8 +4,10 @@ const connectMONGODB = require("./config/db")
 const Comment = require("./models/Comment");
 const app = express();
 const router = require("./routes")
+const cors = require("cors")
 
 app.use(express.json())
+app.use(cors())
 
 const PORT = 3000;
 
