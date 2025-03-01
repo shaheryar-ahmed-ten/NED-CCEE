@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build":"node index.js && cd ../Frontend && npm run build",
+    "start":"node index.js",
+    "build": "npm install && cd ../Frontend && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

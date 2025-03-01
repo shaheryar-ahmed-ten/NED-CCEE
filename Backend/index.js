@@ -26,7 +26,7 @@ connectMONGODB();
 
 app.use("/api", router)
 
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, 'Frontend/dist')))
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, 'Frontend', 'dist', 'index.html'));
