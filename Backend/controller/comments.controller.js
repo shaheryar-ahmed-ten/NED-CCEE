@@ -12,10 +12,10 @@ const getComments = async (req, res) => {
         }).limit(10)
 
         // console.log("req.query", req.query)
-        return res.status(200).json({ data: comments, message: 'OK!!!!!!!' });
+        return res.json({ data: comments, message: 'OK!!!!!!!' });
 
     } catch (error) {
-        return res.status(500).send("Server error", error.message)
+        return res.status(400).send("Server error:" + error.message)
     }
 }
 

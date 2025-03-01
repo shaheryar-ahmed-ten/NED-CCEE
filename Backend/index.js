@@ -5,15 +5,27 @@ const Comment = require("./models/Comment");
 const app = express();
 const router = require("./routes")
 const cors = require("cors")
+const moment = require("moment")
 
 app.use(express.json())
 app.use(cors())
 
 const PORT = 3000;
 
+
+
+app.use((req, res, next) => {
+    console.log(`${req.method}:${req.url} ${moment().format("DD/MMMM/YY HH:mm")}`)
+
+    next()
+})
+
+
+
 connectMONGODB();
 
 app.use("/api", router)
+
 
 // app.get('/', async (req, res) => {
 

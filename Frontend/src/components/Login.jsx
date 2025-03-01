@@ -1,11 +1,11 @@
 // src/components/Auth/Login.jsx
-import React, { useState, useContext } from "react";
-import axios from "axios";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 // import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 import { Button } from 'react-bootstrap';
 import { AuthContext } from "../context/AuthContext"
+import api from "../utils/axios";
 
 const Login = () => {
 
@@ -22,7 +22,7 @@ const Login = () => {
     e.preventDefault();
     try {
 
-      const response = await axios.post("http://localhost:3000/api/auth/login",formData)
+      const response = await api.post("auth/login",formData)
       console.log(":- response.data", response.data)
       if (response.status === 200) {
 
