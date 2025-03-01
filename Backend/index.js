@@ -25,11 +25,12 @@ app.use((req, res, next) => {
 connectMONGODB();
 
 app.use("/api", router)
-
+console.log("__dirname", __dirname)
+console.log("path.join(__dirname, 'Frontend/dist')", path.join(__dirname, '..', 'Frontend/dist'))
 // const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, 'Frontend/dist')))
+app.use(express.static(path.join(__dirname, "..", 'Frontend/dist')))
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, 'Frontend', 'dist', 'index.html'));
+    res.sendFile(path.join(__dirname, '..', 'Frontend', 'dist', 'index.html'));
 })
 
 
