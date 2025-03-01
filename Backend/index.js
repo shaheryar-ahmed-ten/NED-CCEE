@@ -6,7 +6,7 @@ const app = express();
 const router = require("./routes")
 const cors = require("cors")
 const moment = require("moment")
-
+const path = require("path");
 app.use(express.json())
 app.use(cors())
 
@@ -25,6 +25,12 @@ app.use((req, res, next) => {
 connectMONGODB();
 
 app.use("/api", router)
+
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, 'Frontend/dist')))
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, 'Frontend', 'dist', 'index.html'));
+})
 
 
 // app.get('/', async (req, res) => {
