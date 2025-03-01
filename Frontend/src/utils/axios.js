@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "http://localhost:3000/api",
+    baseURL: "https://ned-ccee.onrender.com/api",
 });
 
 // Request interceptor to add the token to the headers
