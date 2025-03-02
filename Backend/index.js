@@ -14,6 +14,7 @@ const PORT = 3000;
 
 
 
+
 app.use((req, res, next) => {
     console.log(`${req.method}:${req.url} ${moment().format("DD/MMMM/YY HH:mm")}`)
 
@@ -23,11 +24,9 @@ app.use((req, res, next) => {
 
 
 connectMONGODB();
-
 app.use("/api", router)
-console.log("__dirname", __dirname)
-console.log("path.join(__dirname, 'Frontend/dist')", path.join(__dirname, '..', 'Frontend/dist'))
-// const __dirname = path.resolve();
+
+//__dirname = Backend
 app.use(express.static(path.join(__dirname, "..", 'Frontend/dist')))
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'Frontend', 'dist', 'index.html'));
